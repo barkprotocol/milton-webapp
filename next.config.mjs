@@ -7,7 +7,14 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ['miltonprotocol.com', 'unsplash.com', 'uploadcare.com', 'arweave.org', 'cryptologos.cc', 'ucarecdn.com'],
+    domains: [
+      'miltonprotocol.com',
+      'unsplash.com',
+      'uploadcare.com',
+      'arweave.org',
+      'cryptologos.cc',
+      'ucarecdn.com'
+    ],
     formats: ['image/avif', 'image/webp'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
@@ -75,5 +82,5 @@ const nextConfig = {
   productionBrowserSourceMaps: false,
 };
 
-// Use CommonJS export
-module.exports = nextConfig;
+// Export the configuration using ES module syntax
+export default nextConfig;
