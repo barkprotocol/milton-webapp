@@ -6,6 +6,7 @@ import { Footer } from '@/components/ui/layout/footer'
 import { Toaster } from '@/components/ui/toaster'
 import './styles/globals.css'
 
+// Load fonts
 const poppins = Poppins({
   subsets: ['latin'],
   weight: ['300', '400', '500', '600', '700'],
@@ -20,6 +21,7 @@ const syne = Syne({
   display: 'swap',
 })
 
+// Define metadata for the page
 export const metadata: Metadata = {
   title: 'Milton - Decentralized Social Finance Solutions',
   description: 'Milton provides innovative decentralized finance solutions, empowering users with cutting-edge blockchain technology.',
@@ -48,6 +50,7 @@ export const metadata: Metadata = {
   },
 }
 
+// Root layout component
 export default function RootLayout({
   children,
 }: {
@@ -58,14 +61,14 @@ export default function RootLayout({
       <head>
         <link
           rel="preload"
-          href={poppins.url}
+          href={poppins.src}
           as="font"
           type="font/woff2"
           crossOrigin="anonymous"
         />
         <link
           rel="preload"
-          href={syne.url}
+          href={syne.src}
           as="font"
           type="font/woff2"
           crossOrigin="anonymous"
