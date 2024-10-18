@@ -1,0 +1,25 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "next.config.js",
+        "use": "@vercel/next"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/api/(.*)",
+        "dest": "/api/$1"
+      },
+      {
+        "src": "/old-route",
+        "status": 301,
+        "dest": "/new-route"
+      }
+    ],
+    "env": {
+      "NEXT_PUBLIC_API_URL": "https://api.example.com",
+      "SECRET_KEY": "your-secret-key"
+    }
+  }
+  
