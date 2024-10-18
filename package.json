@@ -94,6 +94,7 @@
     "react-intersection-observer": "^9.13.1",
     "react-toastify": "^10.0.6",
     "recharts": "^2.13.0",
+    "rpc-websockets": "^9.0.4",
     "shadcn": "^2.1.0",
     "tooltip": "^1.6.1",
     "use-debounce": "^10.0.4",
