@@ -142,13 +142,13 @@ importers:
         version: 1.95.4(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
       '@supabase/auth-helpers-nextjs':
         specifier: ^0.10.0
-        version: 0.10.0(@supabase/supabase-js@2.45.4(bufferutil@4.0.8)(utf-8-validate@5.0.10))
+        version: 0.10.0(@supabase/supabase-js@2.45.5(bufferutil@4.0.8)(utf-8-validate@5.0.10))
       '@supabase/ssr':
         specifier: latest
-        version: 0.5.1(@supabase/supabase-js@2.45.4(bufferutil@4.0.8)(utf-8-validate@5.0.10))
+        version: 0.5.1(@supabase/supabase-js@2.45.5(bufferutil@4.0.8)(utf-8-validate@5.0.10))
       '@supabase/supabase-js':
         specifier: ^2.45.4
-        version: 2.45.4(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+        version: 2.45.5(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       '@svgr/webpack':
         specifier: ^8.1.0
         version: 8.1.0(typescript@5.6.3)
@@ -1882,6 +1882,9 @@ packages:
 
   '@metaplex-foundation/beet@0.7.1':
     resolution: {integrity: sha512-hNCEnS2WyCiYyko82rwuISsBY3KYpe828ubsd2ckeqZr7tl0WVLivGkoyA/qdiaaHEBGdGl71OpfWa2rqL3DiA==}
+
+  '@metaplex-foundation/beet@0.7.2':
+    resolution: {integrity: sha512-K+g3WhyFxKPc0xIvcIjNyV1eaTVJTiuaHZpig7Xx0MuYRMoJLLvhLTnUXhFdR5Tu2l2QSyKwfyXDgZlzhULqFg==}
 
   '@metaplex-foundation/cusper@0.0.2':
     resolution: {integrity: sha512-S9RulC2fFCFOQraz61bij+5YCHhSO9llJegK8c8Y6731fSi6snUSQJdCUqYS8AIgR0TKbQvdvgSyIIdbDFZbBA==}
@@ -3866,32 +3869,32 @@ packages:
     peerDependencies:
       '@supabase/supabase-js': ^2.39.8
 
-  '@supabase/auth-js@2.65.0':
-    resolution: {integrity: sha512-+wboHfZufAE2Y612OsKeVP4rVOeGZzzMLD/Ac3HrTQkkY4qXNjI6Af9gtmxwccE5nFvTiF114FEbIQ1hRq5uUw==}
+  '@supabase/auth-js@2.65.1':
+    resolution: {integrity: sha512-IA7i2Xq2SWNCNMKxwmPlHafBQda0qtnFr8QnyyBr+KaSxoXXqEzFCnQ1dGTy6bsZjVBgXu++o3qrDypTspaAPw==}
 
-  '@supabase/functions-js@2.4.1':
-    resolution: {integrity: sha512-8sZ2ibwHlf+WkHDUZJUXqqmPvWQ3UHN0W30behOJngVh/qHHekhJLCFbh0AjkE9/FqqXtf9eoVvmYgfCLk5tNA==}
+  '@supabase/functions-js@2.4.3':
+    resolution: {integrity: sha512-sOLXy+mWRyu4LLv1onYydq+10mNRQ4rzqQxNhbrKLTLTcdcmS9hbWif0bGz/NavmiQfPs4ZcmQJp4WqOXlR4AQ==}
 
   '@supabase/node-fetch@2.6.15':
     resolution: {integrity: sha512-1ibVeYUacxWYi9i0cf5efil6adJ9WRyZBLivgjs+AUpewx1F3xPi7gLgaASI2SmIQxPoCEjAsLAzKPgMJVgOUQ==}
     engines: {node: 4.x || >=6.0.0}
 
-  '@supabase/postgrest-js@1.16.1':
-    resolution: {integrity: sha512-EOSEZFm5pPuCPGCmLF1VOCS78DfkSz600PBuvBND/IZmMciJ1pmsS3ss6TkB6UkuvTybYiBh7gKOYyxoEO3USA==}
+  '@supabase/postgrest-js@1.16.2':
+    resolution: {integrity: sha512-dA/CIrSO2YDQ6ABNpbvEg9DwBMMbuKfWaFuZAU9c66PenoLSoIoyXk1Yq/wC2XISgEIqaMHmTrDAAsO80kjHqg==}
 
-  '@supabase/realtime-js@2.10.2':
-    resolution: {integrity: sha512-qyCQaNg90HmJstsvr2aJNxK2zgoKh9ZZA8oqb7UT2LCh3mj9zpa3Iwu167AuyNxsxrUE8eEJ2yH6wLCij4EApA==}
+  '@supabase/realtime-js@2.10.7':
+    resolution: {integrity: sha512-OLI0hiSAqQSqRpGMTUwoIWo51eUivSYlaNBgxsXZE7PSoWh12wPRdVt0psUMaUzEonSB85K21wGc7W5jHnT6uA==}
 
   '@supabase/ssr@0.5.1':
     resolution: {integrity: sha512-+G94H/GZG0nErZ3FQV9yJmsC5Rj7dmcfCAwOt37hxeR1La+QTl8cE9whzYwPUrTJjMLGNXoO+1BMvVxwBAbz4g==}
     peerDependencies:
       '@supabase/supabase-js': ^2.43.4
 
-  '@supabase/storage-js@2.7.0':
-    resolution: {integrity: sha512-iZenEdO6Mx9iTR6T7wC7sk6KKsoDPLq8rdu5VRy7+JiT1i8fnqfcOr6mfF2Eaqky9VQzhP8zZKQYjzozB65Rig==}
+  '@supabase/storage-js@2.7.1':
+    resolution: {integrity: sha512-asYHcyDR1fKqrMpytAS1zjyEfvxuOIp1CIXX7ji4lHHcJKqyk+sLl/Vxgm4sN6u8zvuUtae9e4kDxQP2qrwWBA==}
 
-  '@supabase/supabase-js@2.45.4':
-    resolution: {integrity: sha512-E5p8/zOLaQ3a462MZnmnz03CrduA5ySH9hZyL03Y+QZLIOO4/Gs8Rdy4ZCKDHsN7x0xdanVEWWFN3pJFQr9/hg==}
+  '@supabase/supabase-js@2.45.5':
+    resolution: {integrity: sha512-xTPsv33Hcj6C38SXa4nKobwEwkNQuwcCKtcuBsDT6bvphl1VUAO3x2QoLOuuglJzk2Oaf3WcVsvRcxXNE8PG/g==}
 
   '@supercharge/promise-pool@2.4.0':
     resolution: {integrity: sha512-O9CMipBlq5OObdt1uKJGIzm9cdjpPWfj+a+Zw9EgWKxaMNHKC7EU7X9taj3H0EGQNLOSq2jAcOa3EzxlfHsD6w==}
@@ -4229,8 +4232,8 @@ packages:
   '@types/jsonwebtoken@9.0.7':
     resolution: {integrity: sha512-ugo316mmTYBl2g81zDFnZ7cfxlut3o+/EQdaP7J8QN2kY6lJ22hmQYCK5EHcJHbrW+dkCGSCPgbG8JtYj6qSrg==}
 
-  '@types/lodash@4.17.10':
-    resolution: {integrity: sha512-YpS0zzoduEhuOWjAotS6A5AVCva7X4lVlYLF0FYHAY9sdraBfnatttHItlWeZdGhuEkf+OzMNg2ZYAx8t+52uQ==}
+  '@types/lodash@4.17.11':
+    resolution: {integrity: sha512-jzqWo/uQP/iqeGGTjhgFp2yaCrCYTauASQcpdzESNCkHjSprBJVcZP9KG9aQ0q+xcsXiKd/iuw/4dLjS3Odc7Q==}
 
   '@types/long@4.0.2':
     resolution: {integrity: sha512-MqTGEo5bj5t157U6fA/BiDynNkn0YknVdh48CMPkTSpFTVmvao5UQmm7uEF6xBEo7qIMAlY/JSleYaE6VOdpaA==}
@@ -8804,13 +8807,13 @@ packages:
   sdp@2.12.0:
     resolution: {integrity: sha512-jhXqQAQVM+8Xj5EjJGVweuEzgtGWb3tmEEpl3CLP3cStInSbVHSg0QWOGQzNq8pSID4JkpeV2mPqlMDLrm0/Vw==}
 
-  secp256k1@4.0.3:
-    resolution: {integrity: sha512-NLZVf+ROMxwtEj3Xa562qgv2BK5e2WNmXPiOdVIPLgs6lyTzMvBq0aWTYMI5XCP9jZMVKOcqZLw/Wc4vDkuxhA==}
-    engines: {node: '>=10.0.0'}
+  secp256k1@4.0.4:
+    resolution: {integrity: sha512-6JfvwvjUOn8F/jUoBY2Q1v5WY5XS+rj8qSe0v8Y4ezH4InLgTEeOOPQsRll9OV429Pvo6BCHGavIyJfr3TAhsw==}
+    engines: {node: '>=18.0.0'}
 
-  secp256k1@5.0.0:
-    resolution: {integrity: sha512-TKWX8xvoGHrxVdqbYeZM9w+izTF4b9z3NhSaDkdn81btvuh+ivbIMGT/zQvDtTFWhRlThpoz6LEYTr7n8A5GcA==}
-    engines: {node: '>=14.0.0'}
+  secp256k1@5.0.1:
+    resolution: {integrity: sha512-lDFs9AAIaWP9UCdtWrotXWWF9t8PWgQDcxqgAnpM9rMqxb3Oaq2J0thzPVSxBwdJgyQtkU/sYtFtbM1RSt/iYA==}
+    engines: {node: '>=18.0.0'}
 
   secure-json-parse@2.7.0:
     resolution: {integrity: sha512-6aU+Rwsezw7VR8/nyvKTx8QpWH9FrcYiXXlqC4z5d5XQBDRqtbfsRjnwGyqbi3gddNtWHuEk9OANUotL26qKUw==}
@@ -10817,7 +10820,7 @@ snapshots:
       big.js: 6.2.2
       bn.js: 5.2.1
       buffer-layout: 1.2.2
-      cross-fetch: 3.1.8(encoding@0.1.13)
+      cross-fetch: 3.1.6(encoding@0.1.13)
       dotenv: 10.0.0
       toformat: 2.0.0
       yargs: 17.7.2
@@ -10925,7 +10928,7 @@ snapshots:
       bs58: 4.0.1
       buffer-layout: 1.2.2
       camelcase: 6.3.0
-      cross-fetch: 3.1.8(encoding@0.1.13)
+      cross-fetch: 3.1.6(encoding@0.1.13)
       crypto-hash: 1.3.0
       eventemitter3: 4.0.7
       js-sha256: 0.9.0
@@ -10947,7 +10950,7 @@ snapshots:
       bs58: 4.0.1
       buffer-layout: 1.2.2
       camelcase: 6.3.0
-      cross-fetch: 3.1.8(encoding@0.1.13)
+      cross-fetch: 3.1.6(encoding@0.1.13)
       crypto-hash: 1.3.0
       eventemitter3: 4.0.7
       js-sha256: 0.9.0
@@ -10969,7 +10972,7 @@ snapshots:
       bs58: 4.0.1
       buffer-layout: 1.2.2
       camelcase: 6.3.0
-      cross-fetch: 3.1.8(encoding@0.1.13)
+      cross-fetch: 3.1.6(encoding@0.1.13)
       crypto-hash: 1.3.0
       eventemitter3: 4.0.7
       pako: 2.1.0
@@ -11803,7 +11806,7 @@ snapshots:
       '@solana/buffer-layout': 4.0.1
       '@solana/web3.js': 1.95.4(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
       bn.js: 5.2.1
-      decimal.js: 10.4.3
+      decimal.js: 10.4.2
       jsbi: 4.3.0
     transitivePeerDependencies:
       - bufferutil
@@ -11814,7 +11817,7 @@ snapshots:
     dependencies:
       '@project-serum/anchor': 0.22.1(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
       big.js: 5.2.2
-      decimal.js: 10.4.3
+      decimal.js: 10.4.2
       jsbi: 4.3.0
       tiny-invariant: 1.3.3
       toformat: 2.0.0
@@ -11841,7 +11844,7 @@ snapshots:
       '@solana/spl-token': 0.1.8(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
       '@solana/web3.js': 1.95.4(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
       bigint-buffer: 1.1.5
-      bignumber.js: 9.1.2
+      bignumber.js: 9.1.0
       bn.js: 5.2.1
     transitivePeerDependencies:
       - bufferutil
@@ -11859,7 +11862,7 @@ snapshots:
       '@dradex/idl': '@jup-ag/dradex-idl@0.2.1(@solana/web3.js@1.95.4(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10))'
       '@project-serum/anchor': 0.24.2(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
       '@solana/spl-token': 0.3.11(@solana/web3.js@1.95.4(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10))(bufferutil@4.0.8)(encoding@0.1.13)(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.6.3)(utf-8-validate@5.0.10)
-      decimal.js: 10.4.3
+      decimal.js: 10.4.2
       jsbi: 4.3.0
     transitivePeerDependencies:
       - '@solana/web3.js'
@@ -11900,7 +11903,7 @@ snapshots:
       '@pythnetwork/client': 2.7.3(@solana/web3.js@1.95.4(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10))
       '@solana/spl-token': 0.1.8(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
       '@solana/web3.js': 1.95.4(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
-      decimal.js: 10.4.3
+      decimal.js: 10.4.2
     transitivePeerDependencies:
       - bufferutil
       - encoding
@@ -11914,7 +11917,7 @@ snapshots:
       '@pythnetwork/client': 2.7.3(@solana/web3.js@1.31.0(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10))
       '@solana/spl-token': 0.1.8(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
       '@solana/web3.js': 1.31.0(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
-      decimal.js: 10.4.3
+      decimal.js: 10.4.2
     transitivePeerDependencies:
       - bufferutil
       - encoding
@@ -11927,7 +11930,7 @@ snapshots:
 
   '@jup-ag/phoenix-sdk@1.4.4(@solana/web3.js@1.95.4(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10))(bufferutil@4.0.8)(encoding@0.1.13)(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.6.3)(utf-8-validate@5.0.10)':
     dependencies:
-      '@metaplex-foundation/beet': 0.7.1
+      '@metaplex-foundation/beet': 0.7.2
       '@metaplex-foundation/rustbin': 0.3.5
       '@metaplex-foundation/solita': 0.12.2(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
       '@solana/spl-token': 0.3.11(@solana/web3.js@1.95.4(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10))(bufferutil@4.0.8)(encoding@0.1.13)(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.6.3)(utf-8-validate@5.0.10)
@@ -11950,7 +11953,7 @@ snapshots:
       '@project-serum/borsh': 0.2.5(@solana/web3.js@1.95.4(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10))
       '@solana/spl-token': 0.1.8(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
       '@solana/web3.js': 1.95.4(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
-      decimal.js: 10.4.3
+      decimal.js: 10.4.2
     transitivePeerDependencies:
       - bufferutil
       - encoding
@@ -11962,7 +11965,7 @@ snapshots:
       '@project-serum/anchor': 0.25.0(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
       '@solana/spl-token': 0.1.8(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
       '@solana/web3.js': 1.95.4(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
-      decimal.js: 10.4.3
+      decimal.js: 10.4.2
       tiny-invariant: 1.3.3
     transitivePeerDependencies:
       - bufferutil
@@ -12650,7 +12653,7 @@ snapshots:
     dependencies:
       '@solana/spl-token': 0.1.8(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
       '@solana/web3.js': 1.95.4(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
-      decimal.js: 10.4.3
+      decimal.js: 10.4.2
       tiny-invariant: 1.3.3
     transitivePeerDependencies:
       - bufferutil
@@ -12696,7 +12699,7 @@ snapshots:
       '@solana/web3.js': 1.95.4(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
       bn-sqrt: 1.0.0
       bn.js: 5.2.1
-      decimal.js: 10.4.3
+      decimal.js: 10.4.2
       dotenv: 16.4.5
       invariant: 2.2.4
       jsbi: 4.3.0
@@ -12732,7 +12735,7 @@ snapshots:
       big.js: 6.2.2
       binance-api-node: 0.12.7(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
       bs58: 5.0.0
-      cross-fetch: 3.1.8(encoding@0.1.13)
+      cross-fetch: 3.1.6(encoding@0.1.13)
       dotenv: 16.4.5
       node-kraken-api: 2.2.2(buffer@6.0.3)
     transitivePeerDependencies:
@@ -12822,7 +12825,7 @@ snapshots:
       '@solana/spl-token-registry': 0.2.1105
       '@solana/web3.js': 1.72.1(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
       bn.js: 5.2.1
-      cross-fetch: 3.1.8(encoding@0.1.13)
+      cross-fetch: 3.1.6(encoding@0.1.13)
       decimal.js: 10.3.1
       jsbi: 4.3.0
     transitivePeerDependencies:
@@ -12907,6 +12910,15 @@ snapshots:
   '@metaplex-foundation/beet@0.7.1':
     dependencies:
       ansicolors: 0.3.2
+      bn.js: 5.2.1
+      debug: 4.3.7
+    transitivePeerDependencies:
+      - supports-color
+
+  '@metaplex-foundation/beet@0.7.2':
+    dependencies:
+      ansicolors: 0.3.2
+      assert: 2.1.0
       bn.js: 5.2.1
       debug: 4.3.7
     transitivePeerDependencies:
@@ -13449,7 +13461,7 @@ snapshots:
     dependencies:
       '@project-serum/anchor': 0.25.0(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
       '@solana/spl-token': 0.1.8(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
-      decimal.js: 10.4.3
+      decimal.js: 10.4.2
       tiny-invariant: 1.3.3
     transitivePeerDependencies:
       - bufferutil
@@ -13620,7 +13632,7 @@ snapshots:
       bs58: 4.0.1
       buffer-layout: 1.2.2
       camelcase: 5.3.1
-      cross-fetch: 3.1.8(encoding@0.1.13)
+      cross-fetch: 3.1.6(encoding@0.1.13)
       crypto-hash: 1.3.0
       eventemitter3: 4.0.7
       find: 0.3.0
@@ -13642,7 +13654,7 @@ snapshots:
       bs58: 4.0.1
       buffer-layout: 1.2.2
       camelcase: 5.3.1
-      cross-fetch: 3.1.8(encoding@0.1.13)
+      cross-fetch: 3.1.6(encoding@0.1.13)
       crypto-hash: 1.3.0
       eventemitter3: 4.0.7
       find: 0.3.0
@@ -13664,7 +13676,7 @@ snapshots:
       bs58: 4.0.1
       buffer-layout: 1.2.2
       camelcase: 5.3.1
-      cross-fetch: 3.1.8(encoding@0.1.13)
+      cross-fetch: 3.1.6(encoding@0.1.13)
       crypto-hash: 1.3.0
       eventemitter3: 4.0.7
       find: 0.3.0
@@ -13686,7 +13698,7 @@ snapshots:
       bs58: 4.0.1
       buffer-layout: 1.2.2
       camelcase: 5.3.1
-      cross-fetch: 3.1.8(encoding@0.1.13)
+      cross-fetch: 3.1.6(encoding@0.1.13)
       crypto-hash: 1.3.0
       eventemitter3: 4.0.7
       js-sha256: 0.9.0
@@ -13707,7 +13719,7 @@ snapshots:
       bs58: 4.0.1
       buffer-layout: 1.2.2
       camelcase: 5.3.1
-      cross-fetch: 3.1.8(encoding@0.1.13)
+      cross-fetch: 3.1.6(encoding@0.1.13)
       crypto-hash: 1.3.0
       eventemitter3: 4.0.7
       js-sha256: 0.9.0
@@ -13729,7 +13741,7 @@ snapshots:
       bs58: 4.0.1
       buffer-layout: 1.2.2
       camelcase: 5.3.1
-      cross-fetch: 3.1.8(encoding@0.1.13)
+      cross-fetch: 3.1.6(encoding@0.1.13)
       crypto-hash: 1.3.0
       eventemitter3: 4.0.7
       js-sha256: 0.9.0
@@ -13751,7 +13763,7 @@ snapshots:
       bs58: 4.0.1
       buffer-layout: 1.2.2
       camelcase: 6.3.0
-      cross-fetch: 3.1.8(encoding@0.1.13)
+      cross-fetch: 3.1.6(encoding@0.1.13)
       crypto-hash: 1.3.0
       eventemitter3: 4.0.7
       js-sha256: 0.9.0
@@ -15781,11 +15793,11 @@ snapshots:
       borsh: 0.4.0
       bs58: 4.0.1
       buffer: 6.0.1
-      cross-fetch: 3.1.8(encoding@0.1.13)
+      cross-fetch: 3.1.6(encoding@0.1.13)
       jayson: 3.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       js-sha3: 0.8.0
       rpc-websockets: 7.11.2
-      secp256k1: 4.0.3
+      secp256k1: 4.0.4
       superstruct: 0.14.2
       tweetnacl: 1.0.3
     transitivePeerDependencies:
@@ -15797,7 +15809,7 @@ snapshots:
     dependencies:
       '@babel/runtime': 7.25.7
       '@noble/ed25519': 1.7.3
-      '@noble/hashes': 1.5.0
+      '@noble/hashes': 1.1.2
       '@noble/secp256k1': 1.7.1
       '@solana/buffer-layout': 4.0.1
       bigint-buffer: 1.1.5
@@ -15819,7 +15831,7 @@ snapshots:
     dependencies:
       '@babel/runtime': 7.25.7
       '@noble/ed25519': 1.7.3
-      '@noble/hashes': 1.5.0
+      '@noble/hashes': 1.1.2
       '@noble/secp256k1': 1.7.1
       '@solana/buffer-layout': 4.0.1
       agentkeepalive: 4.5.0
@@ -15978,22 +15990,22 @@ snapshots:
       '@stablelib/random': 1.0.2
       '@stablelib/wipe': 1.0.1
 
-  '@supabase/auth-helpers-nextjs@0.10.0(@supabase/supabase-js@2.45.4(bufferutil@4.0.8)(utf-8-validate@5.0.10))':
+  '@supabase/auth-helpers-nextjs@0.10.0(@supabase/supabase-js@2.45.5(bufferutil@4.0.8)(utf-8-validate@5.0.10))':
     dependencies:
-      '@supabase/auth-helpers-shared': 0.7.0(@supabase/supabase-js@2.45.4(bufferutil@4.0.8)(utf-8-validate@5.0.10))
-      '@supabase/supabase-js': 2.45.4(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+      '@supabase/auth-helpers-shared': 0.7.0(@supabase/supabase-js@2.45.5(bufferutil@4.0.8)(utf-8-validate@5.0.10))
+      '@supabase/supabase-js': 2.45.5(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       set-cookie-parser: 2.7.0
 
-  '@supabase/auth-helpers-shared@0.7.0(@supabase/supabase-js@2.45.4(bufferutil@4.0.8)(utf-8-validate@5.0.10))':
+  '@supabase/auth-helpers-shared@0.7.0(@supabase/supabase-js@2.45.5(bufferutil@4.0.8)(utf-8-validate@5.0.10))':
     dependencies:
-      '@supabase/supabase-js': 2.45.4(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+      '@supabase/supabase-js': 2.45.5(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       jose: 4.15.9
 
-  '@supabase/auth-js@2.65.0':
+  '@supabase/auth-js@2.65.1':
     dependencies:
       '@supabase/node-fetch': 2.6.15
 
-  '@supabase/functions-js@2.4.1':
+  '@supabase/functions-js@2.4.3':
     dependencies:
       '@supabase/node-fetch': 2.6.15
 
@@ -16001,11 +16013,11 @@ snapshots:
     dependencies:
       whatwg-url: 5.0.0
 
-  '@supabase/postgrest-js@1.16.1':
+  '@supabase/postgrest-js@1.16.2':
     dependencies:
       '@supabase/node-fetch': 2.6.15
 
-  '@supabase/realtime-js@2.10.2(bufferutil@4.0.8)(utf-8-validate@5.0.10)':
+  '@supabase/realtime-js@2.10.7(bufferutil@4.0.8)(utf-8-validate@5.0.10)':
     dependencies:
       '@supabase/node-fetch': 2.6.15
       '@types/phoenix': 1.6.5
@@ -16015,23 +16027,23 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  '@supabase/ssr@0.5.1(@supabase/supabase-js@2.45.4(bufferutil@4.0.8)(utf-8-validate@5.0.10))':
+  '@supabase/ssr@0.5.1(@supabase/supabase-js@2.45.5(bufferutil@4.0.8)(utf-8-validate@5.0.10))':
     dependencies:
-      '@supabase/supabase-js': 2.45.4(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+      '@supabase/supabase-js': 2.45.5(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       cookie: 0.6.0
 
-  '@supabase/storage-js@2.7.0':
+  '@supabase/storage-js@2.7.1':
     dependencies:
       '@supabase/node-fetch': 2.6.15
 
-  '@supabase/supabase-js@2.45.4(bufferutil@4.0.8)(utf-8-validate@5.0.10)':
+  '@supabase/supabase-js@2.45.5(bufferutil@4.0.8)(utf-8-validate@5.0.10)':
     dependencies:
-      '@supabase/auth-js': 2.65.0
-      '@supabase/functions-js': 2.4.1
+      '@supabase/auth-js': 2.65.1
+      '@supabase/functions-js': 2.4.3
       '@supabase/node-fetch': 2.6.15
-      '@supabase/postgrest-js': 1.16.1
-      '@supabase/realtime-js': 2.10.2(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-      '@supabase/storage-js': 2.7.0
+      '@supabase/postgrest-js': 1.16.2
+      '@supabase/realtime-js': 2.10.7(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+      '@supabase/storage-js': 2.7.1
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
@@ -16599,7 +16611,7 @@ snapshots:
     dependencies:
       '@types/node': 20.10.6
 
-  '@types/lodash@4.17.10': {}
+  '@types/lodash@4.17.11': {}
 
   '@types/long@4.0.2': {}
 
@@ -17117,7 +17129,7 @@ snapshots:
       base64url: 3.0.1
       bs58: 4.0.1
       keccak: 3.0.4
-      secp256k1: 5.0.0
+      secp256k1: 5.0.1
     optionalDependencies:
       '@randlabs/myalgo-connect': 1.4.2
       algosdk: 1.24.1(encoding@0.1.13)
@@ -17147,7 +17159,7 @@ snapshots:
       keccak: 3.0.4
       multistream: 4.1.0
       process: 0.11.10
-      secp256k1: 4.0.3
+      secp256k1: 4.0.4
       tmp-promise: 3.0.3
     transitivePeerDependencies:
       - '@solana/web3.js'
@@ -22358,7 +22370,7 @@ snapshots:
 
   ripple-lib@1.10.1(bufferutil@4.0.8)(utf-8-validate@5.0.10):
     dependencies:
-      '@types/lodash': 4.17.10
+      '@types/lodash': 4.17.11
       '@types/ws': 7.4.7
       bignumber.js: 9.1.2
       https-proxy-agent: 5.0.1
@@ -22455,13 +22467,13 @@ snapshots:
 
   sdp@2.12.0: {}
 
-  secp256k1@4.0.3:
+  secp256k1@4.0.4:
     dependencies:
       elliptic: 6.5.7
-      node-addon-api: 2.0.2
+      node-addon-api: 5.1.0
       node-gyp-build: 4.8.2
 
-  secp256k1@5.0.0:
+  secp256k1@5.0.1:
     dependencies:
       elliptic: 6.5.7
       node-addon-api: 5.1.0
