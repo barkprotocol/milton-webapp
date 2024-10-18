@@ -3,7 +3,7 @@
     "builds": [
       {
         "src": "next.config.js",
-        "use": "@vercel/next"
+        "use": "@vercel/static-build"
       }
     ],
     "routes": [
@@ -18,8 +18,8 @@
       }
     ],
     "env": {
-      "NEXT_PUBLIC_API_URL": "https://api.example.com",
-      "SECRET_KEY": "your-secret-key"
+      "NEXT_PUBLIC_API_URL": "https://api.miltonprotocol.com",
+      "SECRET_KEY": "JPFhJYy5FHPTrBIjhtarnKoEVbLwlGVQ4wIx4H+aVr05YzbAT79rzu50tTK8H0w6vWy7gZzYkmF7MTOBH/IEXQ=="
     }
   }
   
