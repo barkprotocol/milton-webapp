@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { z } from 'zod';
 
 // Example database client (replace with your actual database client)
-import { db } from '@/lib/db'; // Adjust the import according to your project structure
+import { db } from '../../lib/db'; // Adjust the import according to your project structure
 
 // Define the schema for transaction validation
 const transactionSchema = z.object({

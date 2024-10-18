@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { Connection, PublicKey } from '@solana/web3.js';
 import { z } from 'zod';
-import { rateLimit } from '@/lib/rate-limit';  // Ensure this import is correct
+import { rateLimit } from '../../lib/db/rate-limit';
 
 // Initialize Solana connection (replace with your RPC URL)
 const connection = new Connection(process.env.SOLANA_RPC_URL || 'https://api.mainnet-beta.solana.com');
