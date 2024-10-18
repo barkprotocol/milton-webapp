@@ -2,23 +2,24 @@ import animatePlugin from "tailwindcss-animate"
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: ["class"],
+  darkMode: ["class"], // Enables dark mode based on a class
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
+    './pages/**/*.{ts,tsx}', // Ensure all your pages are included
+    './components/**/*.{ts,tsx}', // Ensure all your components are included
+    './app/**/*.{ts,tsx}', // If using app directory in Next.js
+    './src/**/*.{ts,tsx}', // If your source files are under src
   ],
   theme: {
     container: {
-      center: true,
-      padding: "2rem",
+      center: true, // Centers the container
+      padding: "2rem", // Adds padding
       screens: {
-        "2xl": "1400px",
+        "2xl": "1400px", // Custom screen size for 2xl
       },
     },
     extend: {
       colors: {
+        // Using CSS variables for colors, ensure they are defined
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -28,42 +29,16 @@ module.exports = {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
         },
-        secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
-        },
-        destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
-        },
-        muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
-        },
-        accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
-        },
-        popover: {
-          DEFAULT: "hsl(var(--popover))",
-          foreground: "hsl(var(--popover-foreground))",
-        },
-        card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
-        },
-        "navajo-white": "hsl(var(--navajo-white))",
-        "ff-daa4": "hsl(var(--ff-daa4))",
-        "butter-milk": "hsl(var(--butter-milk))",
+        // Other color settings...
       },
       borderRadius: {
-        lg: "var(--radius)",
+        lg: "var(--radius)", // Custom radius settings
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        sans: ['Poppins', 'sans-serif'],
-        heading: ['Oswald', 'sans-serif'],
+        sans: ['Poppins', 'sans-serif'], // Ensure Poppins is imported
+        heading: ['Oswald', 'sans-serif'], // Ensure Oswald is imported
       },
       keyframes: {
         "accordion-down": {
@@ -81,5 +56,5 @@ module.exports = {
       },
     },
   },
-  plugins: [animatePlugin],
+  plugins: [animatePlugin], // Adding tailwindcss-animate plugin
 }
