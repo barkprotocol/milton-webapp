@@ -1,72 +1,91 @@
-import DeployButton from "@/components/deploy-button";
-import { EnvVarWarning } from "@/components/env-var-warning";
-import HeaderAuth from "@/components/header-auth";
-import { ThemeSwitcher } from "@/components/theme-switcher";
-import { hasEnvVars } from "@/utils/supabase/check-env-vars";
-import { GeistSans } from "geist/font/sans";
-import { ThemeProvider } from "next-themes";
-import Link from "next/link";
-import "./globals.css";
+import type { Metadata } from 'next'
+import { Poppins, Syne } from 'next/font/google'
+import { ThemeProvider } from '@/components/theme-provider'
+import { Header } from '@/components/ui/layout/header'
+import { Footer } from '@/components/ui/layout/footer'
+import { Toaster } from '@/components/ui/toaster'
+import './styles/globals.css'
 
-const defaultUrl = process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_URL}`
-  : "http://localhost:3000";
+const poppins = Poppins({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
+  variable: '--font-poppins',
+  display: 'swap',
+})
 
-export const metadata = {
-  metadataBase: new URL(defaultUrl),
-  title: "Next.js and Supabase Starter Kit",
-  description: "The fastest way to build apps with Next.js and Supabase",
-};
+const syne = Syne({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800'],
+  variable: '--font-syne',
+  display: 'swap',
+})
+
+export const metadata: Metadata = {
+  title: 'Milton - Decentralized Social Finance Solutions',
+  description: 'Milton provides innovative decentralized finance solutions, empowering users with cutting-edge blockchain technology.',
+  keywords: ['DeFi', 'Blockchain', 'Solana', 'Meme Coin', 'Decentralized Finance', 'Milton'],
+  authors: [{ name: 'BARK Protocol' }],
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://miltonprotocol.com',
+    site_name: 'MILTON',
+    title: 'Milton - Decentralized Finance Solutions',
+    description: 'Empowering users with cutting-edge blockchain technology and innovative DeFi solutions.',
+    images: [
+      {
+        url: 'https://miltonprotocol.com/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Milton Platform',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    site: '@Milton',
+    creator: '@bark_protocol',
+  },
+}
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={GeistSans.className} suppressHydrationWarning>
-      <body className="bg-background text-foreground">
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <main className="min-h-screen flex flex-col items-center">
-            <div className="flex-1 w-full flex flex-col gap-20 items-center">
-              <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
-                <div className="w-full max-w-5xl flex justify-between items-center p-3 px-5 text-sm">
-                  <div className="flex gap-5 items-center font-semibold">
-                    <Link href={"/"}>Next.js Supabase Starter</Link>
-                    <div className="flex items-center gap-2">
-                      <DeployButton />
-                    </div>
-                  </div>
-                  {!hasEnvVars ? <EnvVarWarning /> : <HeaderAuth />}
-                </div>
-              </nav>
-              <div className="flex flex-col gap-20 max-w-5xl p-5">
-                {children}
-              </div>
-
-              <footer className="w-full flex items-center justify-center border-t mx-auto text-center text-xs gap-8 py-16">
-                <p>
-                  Powered by{" "}
-                  <a
-                    href="https://supabase.com/?utm_source=create-next-app&utm_medium=template&utm_term=nextjs"
-                    target="_blank"
-                    className="font-bold hover:underline"
-                    rel="noreferrer"
-                  >
-                    Supabase
-                  </a>
-                </p>
-                <ThemeSwitcher />
-              </footer>
-            </div>
-          </main>
+    <html lang="en" className={`${poppins.variable} ${syne.variable} scroll-smooth`}>
+      <head>
+        <link
+          rel="preload"
+          href={poppins.url}
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href={syne.url}
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+      </head>
+      <body className={`${poppins.className} antialiased`}>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-primary text-primary-foreground px-4 py-2 rounded z-50">
+            Skip to main content
+          </a>
+          <div className="flex flex-col min-h-screen">
+            <Header />
+            <main id="main-content" className="flex-grow">
+              {children}
+            </main>
+            <Footer />
+          </div>
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>
-  );
+  )
 }
