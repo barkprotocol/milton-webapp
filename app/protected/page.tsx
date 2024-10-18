@@ -1,4 +1,4 @@
-import FetchDataSteps from "@/components/tutorial/fetch-data-steps"; // Ensure this path is correct
+import FetchDataSteps from "@/components/tutorials/fetch-data-steps";
 import { createClient } from "@/utils/supabase/server";
 import { InfoIcon } from "lucide-react";
 import { redirect } from "next/navigation";
