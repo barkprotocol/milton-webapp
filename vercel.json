@@ -1,25 +1,23 @@
 {
-    "version": 2,
-    "builds": [
-      {
-        "src": "next.config.js",
-        "use": "@vercel/static-build"
-      }
-    ],
-    "routes": [
-      {
-        "src": "/api/(.*)",
-        "dest": "/api/$1"
-      },
-      {
-        "src": "/old-route",
-        "status": 301,
-        "dest": "/new-route"
-      }
-    ],
-    "env": {
-      "NEXT_PUBLIC_API_URL": "https://api.miltonprotocol.com",
-      "SECRET_KEY": "JPFhJYy5FHPTrBIjhtarnKoEVbLwlGVQ4wIx4H+aVr05YzbAT79rzu50tTK8H0w6vWy7gZzYkmF7MTOBH/IEXQ=="
+  "version": 2,
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/next"
     }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/$1"
+    },
+    {
+      "src": "/old-route",
+      "status": 301,
+      "dest": "/new-route"
+    }
+  ],
+  "env": {
+    "NEXT_PUBLIC_API_URL": "https://api.miltonprotocol.com"
   }
-  
+}
