@@ -40,7 +40,7 @@ export function Header() {
     setMenuOpen(false)
   }, [pathname])
 
-  const toggleMenu = () => setMenuOpen((prev) => !prev)
+  const toggleMenu = () => setMenuOpen(prev => !prev)
 
   const isActive = (href: string) => pathname === href || pathname.startsWith(href)
 
@@ -52,12 +52,22 @@ export function Header() {
     setMenuOpen(false)
   }
 
+  const renderNavItems = (isMobile = false) => (
+    navItems.map(item => (
+      <Link
+        key={item.href}
+        href={item.href}
+        onClick={(e) => item.href.startsWith('#') ? handleSmoothScroll(e, item.href) : (isMobile ? toggleMenu() : null)}
+        className={`text-gray-600 hover:text-primary transition-colors py-2 ${isActive(item.href) ? 'font-semibold' : ''}`}
+        aria-current={isActive(item.href) ? 'page' : undefined}
+      >
+        {item.label}
+      </Link>
+    ))
+  )
+
   return (
-    <header 
-      className={`sticky top-0 z-40 transition-all duration-300 ${
-        scrolled ? 'bg-white shadow-md' : 'bg-transparent'
-      }`}
-    >
+    <header className={`sticky top-0 z-40 transition-all duration-300 ${scrolled ? 'bg-white shadow-md' : 'bg-transparent'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           <Link href="/" className="flex items-center space-x-2">
@@ -72,19 +82,7 @@ export function Header() {
             <span className={`text-2xl font-bold ${scrolled ? 'text-gray-900' : 'text-gray-900'}`}>MILTON</span>
           </Link>
           <nav className="hidden md:flex space-x-8">
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={(e) => item.href.startsWith('#') ? handleSmoothScroll(e, item.href) : null}
-                className={`${
-                  scrolled ? 'text-gray-600 hover:text-primary' : 'text-gray-900 hover:text-primary'
-                } ${isActive(item.href) ? 'font-semibold' : ''} transition-colors`}
-                aria-current={isActive(item.href) ? 'page' : undefined}
-              >
-                {item.label}
-              </Link>
-            ))}
+            {renderNavItems()}
           </nav>
           <div className="hidden md:flex space-x-4 items-center">
             <WalletButton />
@@ -119,19 +117,7 @@ export function Header() {
             className="md:hidden bg-white py-2"
           >
             <nav className="flex flex-col space-y-2 px-2">
-              {navItems.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={(e) => item.href.startsWith('#') ? handleSmoothScroll(e, item.href) : toggleMenu()}
-                  className={`text-gray-600 hover:text-primary transition-colors py-2 ${
-                    isActive(item.href) ? 'font-semibold' : ''
-                  }`}
-                  aria-current={isActive(item.href) ? 'page' : undefined}
-                >
-                  {item.label}
-                </Link>
-              ))}
+              {renderNavItems(true)}
               <WalletButton />
               <Link href="/pages/blinkboard" passHref>
                 <Button variant="outline" className="text-primary hover:bg-primary/10 w-full">

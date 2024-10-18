@@ -76,5 +76,10 @@ const actions: Action[] = [
 ]
 
 export async function GET() {
-  return NextResponse.json(actions)
+  try {
+    return NextResponse.json(actions)
+  } catch (error) {
+    console.error('Error fetching actions:', error)
+    return NextResponse.json({ error: 'Failed to fetch actions' }, { status: 500 })
+  }
 }
