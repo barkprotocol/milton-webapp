@@ -1,5 +1,3 @@
-'use client';
-
 import { useState, useCallback, memo, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
@@ -10,16 +8,13 @@ import { WalletButton } from '@/components/ui/wallet-button';
 import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowLeft, AlertCircle, Info, CheckCircle, DollarSign } from 'lucide-react';
+import { MiltonTooltip } from "@/components/ui/milton/milton-tooltip";
+import { TooltipProvider } from '@/components/ui/tooltip';
+import { ArrowLeft, AlertCircle } from 'lucide-react';
 import { BuyMiltonForm } from '@/components/ui/milton/buy-milton-form';
 import { toast } from "@/components/ui/use-toast";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-
-const yellowIcons = {
-  info: <Info className="text-yellow-500 w-6 h-6" />,
-  check: <CheckCircle className="text-yellow-500 w-6 h-6" />,
-  dollar: <DollarSign className="text-yellow-500 w-6 h-6" />,
-};
+import { Skeleton } from "@/components/ui/skeleton";
 
 const MILTON_LOGO_URL = process.env.NEXT_PUBLIC_MILTON_LOGO_URL || 'https://ucarecdn.com/fe802b60-cb87-4adc-8e1d-1b16a05f9420/miltonlogoicon.svg';
 
@@ -32,7 +27,9 @@ export default function BuyPage() {
   return (
     <WalletProvider wallets={wallets}>
       <WalletModalProvider>
-        <BuyPageContent />
+        <TooltipProvider>
+          <BuyPageContent />
+        </TooltipProvider>
       </WalletModalProvider>
     </WalletProvider>
   );
@@ -58,7 +55,6 @@ function BuyPageContent() {
         setMiltonPrice(data.miltonPrice);
         setUsdcPrice(data.usdcPrice);
       } catch (error) {
-        console.error('Failed to fetch prices:', error);
         toast({
           title: "Price Fetch Error",
           description: "Unable to fetch current prices. Please try again later.",
@@ -80,7 +76,6 @@ function BuyPageContent() {
 
   const handleError = useCallback((errorMessage: string) => {
     setError(errorMessage);
-    console.error('Purchase error:', errorMessage);
     toast({
       title: "Purchase Error",
       description: errorMessage,
@@ -101,7 +96,6 @@ function BuyPageContent() {
     setShowConfirmation(false);
 
     try {
-      // Implement actual purchase logic here
       await new Promise(resolve => setTimeout(resolve, 2000)); // Simulating API call
       const mockSignature = 'MOCK_SIGNATURE_' + Date.now();
 
@@ -118,23 +112,39 @@ function BuyPageContent() {
     }
   }, [purchaseDetails, handleError, router]);
 
+  const handleRetryFetchPrices = () => {
+    setError(null);
+    fetchPrices();
+  };
+
   return (
     <main className="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
         <Header router={router} />
-        <ErrorDisplay error={error} />
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <PurchaseFormContainer 
-            onError={handleError} 
-            onPurchaseIntent={handlePurchaseIntent}
-            isWalletConnected={!!publicKey} 
-            isLoading={isLoading}
-            miltonPrice={miltonPrice}
-            usdcPrice={usdcPrice}
-          />
-          <InformationSection />
+        <ErrorDisplay error={error} onRetry={handleRetryFetchPrices} />
+        <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-8">
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-center">Purchase MILTON Tokens <MiltonTooltip content="Use MILTON tokens to unlock exclusive features, receive rewards, and participate in governance decisions." /></CardTitle>
+            </CardHeader>
+            <CardContent>
+              {!publicKey ? (
+                <div className="text-center">
+                  <p>Please connect your wallet to purchase MILTON tokens.</p>
+                  <WalletButton />
+                </div>
+              ) : (
+                <BuyMiltonForm
+                  onError={handleError}
+                  onPurchaseIntent={handlePurchaseIntent}
+                  isLoading={isLoading}
+                  miltonPrice={miltonPrice}
+                  usdcPrice={usdcPrice}
+                />
+              )}
+            </CardContent>
+          </Card>
         </div>
-        <OriginSection />
         <SupportSection />
       </div>
       <PurchaseConfirmationDialog
@@ -148,17 +158,16 @@ function BuyPageContent() {
 }
 
 const Header = memo(({ router }: { router: ReturnType<typeof useRouter> }) => (
-  <div className="flex flex-col sm:flex-row justify-between items-center mb-8 space-y-4 sm:space-y-0">
+  <div className="flex justify-between items-center mb-8">
     <Button
       onClick={() => router.push('/')}
       variant="outline"
-      className="flex items-center text-primary hover:bg-primary/10 transition-colors"
-      aria-label="Back to Main"
+      className="text-primary hover:bg-primary/10 transition-colors"
     >
       <ArrowLeft className="mr-2 h-4 w-4" />
       Back to Main
     </Button>
-    <h1 className="text-3xl font-bold text-center flex items-center">
+    <h1 className="text-3xl font-bold text-center">
       <Image
         src={MILTON_LOGO_URL}
         alt="Milton Logo"
@@ -171,131 +180,40 @@ const Header = memo(({ router }: { router: ReturnType<typeof useRouter> }) => (
   </div>
 ));
 
-Header.displayName = 'Header';
-
-const ErrorDisplay = memo(({ error }: { error: string | null }) => {
+const ErrorDisplay = memo(({ error, onRetry }: { error: string | null; onRetry: () => void }) => {
   if (!error) return null;
-
   return (
-    <Alert variant="destructive" className="mb-6" role="alert">
+    <Alert variant="destructive" className="mb-6">
       <AlertCircle className="h-4 w-4" />
       <AlertTitle>Error</AlertTitle>
-      <AlertDescription>{error}</AlertDescription>
+      <AlertDescription>
+        {error}
+        <Button variant="link" onClick={onRetry}>Retry</Button>
+      </AlertDescription>
     </Alert>
   );
 });
 
-ErrorDisplay.displayName = 'ErrorDisplay';
-
-const PurchaseFormContainer = memo(({ onError, onPurchaseIntent, isWalletConnected, isLoading, miltonPrice, usdcPrice }: { 
-  onError: (error: string) => void, 
-  onPurchaseIntent: (solAmount: number, miltonAmount: number) => void, 
-  isWalletConnected: boolean; 
-  isLoading: boolean; 
-  miltonPrice: number | null; 
-  usdcPrice: number | null; 
-}) => (
-  <Card className="w-full">
-    <CardHeader>
-      <CardTitle className="text-center">Purchase MILTON Tokens</CardTitle>
-    </CardHeader>
-    <CardContent>
-      {!isWalletConnected ? (
-        <div className="text-center">
-          <p className="mb-4">Please connect your wallet to purchase MILTON tokens.</p>
-          <WalletButton />
-        </div>
-      ) : (
-        <BuyMiltonForm
-          onError={onError}
-          onPurchaseIntent={onPurchaseIntent}
-          isLoading={isLoading}
-          miltonPrice={miltonPrice}
-          usdcPrice={usdcPrice}
-        />
-      )}
-    </CardContent>
-  </Card>
-));
-
-PurchaseFormContainer.displayName = 'PurchaseFormContainer';
-
-const InformationSection = memo(() => (
-  <div className="flex flex-col space-y-4">
-    <Card className="w-full">
-      <CardHeader>
-        <CardTitle className="text-center">Benefits of Purchasing MILTON</CardTitle>
-      </CardHeader>
-      <CardContent className="flex flex-col items-center">
-        {yellowIcons.info}
-        <p className="text-center mt-2">Get exclusive access to features and events.</p>
-      </CardContent>
-    </Card>
-    <Card className="w-full">
-      <CardHeader>
-        <CardTitle className="text-center">Unique Use Cases</CardTitle>
-      </CardHeader>
-      <CardContent className="flex flex-col items-center">
-        {yellowIcons.check}
-        <p className="text-center mt-2">Participate in community decisions and governance.</p>
-      </CardContent>
-    </Card>
-    <Card className="w-full">
-      <CardHeader>
-        <CardTitle className="text-center">Investment Potential</CardTitle>
-      </CardHeader>
-      <CardContent className="flex flex-col items-center">
-        {yellowIcons.dollar}
-        <p className="text-center mt-2">Invest in a growing ecosystem with real value.</p>
-      </CardContent>
-    </Card>
-  </div>
-));
-
-InformationSection.displayName = 'InformationSection';
-
-const OriginSection = memo(() => (
-  <div className="my-8">
-    <h2 className="text-2xl font-bold text-center">About MILTON</h2>
-    <p className="text-center mt-2">MILTON is designed for transparency, community engagement, and value generation.</p>
-  </div>
-));
-
-OriginSection.displayName = 'OriginSection';
-
 const SupportSection = memo(() => (
-  <div className="my-8">
-    <h2 className="text-2xl font-bold text-center">Need Support?</h2>
-    <p className="text-center mt-2">If you have any questions, feel free to contact our support team.</p>
+  <div className="mt-8">
+    <p>If you have any issues, please contact support.</p>
   </div>
 ));
 
-SupportSection.displayName = 'SupportSection';
-
-const PurchaseConfirmationDialog = memo(({ isOpen, onClose, onConfirm, purchaseDetails }: { 
-  isOpen: boolean; 
-  onClose: () => void; 
-  onConfirm: () => void; 
-  purchaseDetails: { solAmount: number; miltonAmount: number } | null 
-}) => {
-  if (!purchaseDetails) return null;
-
+const PurchaseConfirmationDialog = memo(({ isOpen, onClose, onConfirm, purchaseDetails }: any) => {
+  if (!isOpen || !purchaseDetails) return null;
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Confirm Purchase</DialogTitle>
-          <DialogDescription>
-            You are about to purchase {purchaseDetails.miltonAmount.toFixed(2)} MILTON tokens for {purchaseDetails.solAmount.toFixed(2)} SOL.
-          </DialogDescription>
+          <DialogDescription>You're about to purchase {purchaseDetails.miltonAmount} MILTON tokens for {purchaseDetails.solAmount} SOL.</DialogDescription>
         </DialogHeader>
         <DialogFooter>
-          <Button variant="outline" onClick={onClose}>Cancel</Button>
-          <Button onClick={onConfirm}>Confirm</Button>
+          <Button onClick={onClose} variant="outline">Cancel</Button>
+          <Button onClick={onConfirm} variant="primary">Confirm</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
   );
 });
-
-PurchaseConfirmationDialog.displayName = 'PurchaseConfirmationDialog';

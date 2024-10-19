@@ -53,7 +53,7 @@ export default async function handler(
         status: 'pending',
       }
       payments.push(newPayment)
-      
+
       // Simulate payment processing
       setTimeout(() => {
         const index = payments.findIndex(payment => payment.id === newPayment.id)

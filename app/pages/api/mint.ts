@@ -35,6 +35,19 @@ type ErrorResponseData = {
 
 let mints: Mint[] = []
 
+async function mintToken(newMint: Mint): Promise<void> {
+  return new Promise<void>((resolve) => {
+    // Simulate minting process with a timeout
+    setTimeout(() => {
+      const index = mints.findIndex(mint => mint.id === newMint.id)
+      if (index !== -1) {
+        mints[index].status = Math.random() > 0.1 ? 'completed' : 'failed'
+      }
+      resolve()
+    }, 2000)
+  })
+}
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<PostResponseData | GetResponseData | ErrorResponseData>
@@ -67,12 +80,7 @@ export default async function handler(
       mints.push(newMint)
 
       // Simulate minting process
-      setTimeout(() => {
-        const index = mints.findIndex(mint => mint.id === newMint.id)
-        if (index !== -1) {
-          mints[index].status = Math.random() > 0.1 ? 'completed' : 'failed'
-        }
-      }, 2000)
+      await mintToken(newMint)
 
       return res.status(201).json({ mint: newMint })
     } else if (req.method === 'GET') {
@@ -94,6 +102,10 @@ export default async function handler(
       const startIndex = (page - 1) * limit
       const endIndex = page * limit
       const paginatedMints = userMints.slice(startIndex, endIndex)
+
+      if (paginatedMints.length === 0) {
+        return res.status(404).json({ error: 'No mints found for this address' })
+      }
 
       return res.status(200).json({ mints: paginatedMints })
     } else {

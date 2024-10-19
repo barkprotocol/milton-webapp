@@ -5,7 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { Button } from '@/components/ui/button'
-import { Menu, X, Rocket, ChevronDown, Home } from 'lucide-react'
+import { Menu, X, ChevronDown, Home, DollarSign } from 'lucide-react'
 import { WalletButton } from '@/components/ui/wallet-button'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
@@ -126,8 +126,8 @@ export function Header() {
             <WalletButton />
             <Link href="/pages/buy" passHref>
               <Button variant="outline" className="text-primary hover:bg-primary/10 transition-all duration-300 hover:scale-105">
-                <Rocket className="mr-2 h-4 w-4" aria-hidden="true" />
-                $Buy Milton
+                <DollarSign className="mr-0 h-4 w-4" aria-hidden="true" />
+                Buy Milton
               </Button>
             </Link>
           </div>
@@ -156,11 +156,13 @@ export function Header() {
           >
             <nav className="flex flex-col space-y-2 px-4">
               {renderNavItems(true)}
-              <WalletButton className="w-full" />
-              <Link href="/pages/blinkboard" passHref>
+              <div className="w-full">
+                <WalletButton />
+              </div>
+              <Link href="/pages/buy" passHref>
                 <Button variant="outline" className="text-primary hover:bg-primary/10 w-full transition-all duration-300 hover:scale-105">
-                  <Rocket className="mr-2 h-4 w-4" aria-hidden="true" />
-                  Launch App
+                  <DollarSign className="mr-1 h-4 w-4" aria-hidden="true" />
+                  Buy Milton
                 </Button>
               </Link>
             </nav>

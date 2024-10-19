@@ -6,7 +6,7 @@ const SwapSchema = z.object({
   toToken: z.string(),
   amount: z.number().positive(),
   slippage: z.number().min(0).max(100),
-  walletAddress: z.string(),
+  walletAddress: z.string().min(44, "Wallet address must be at least 44 characters"),
 })
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -14,13 +14,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     try {
       const { fromToken, toToken, amount, slippage, walletAddress } = SwapSchema.parse(req.body)
 
-      // Milton / Jupiter Swap operation
+      // Simulated Swap operation (replace with actual swap logic)
       const mockSwapResult = {
         transactionId: `MILTON_TX_${Date.now()}`,
         fromToken,
         toToken,
         amountIn: amount,
-        amountOut: amount * 0.98, // Simulating a 2% slippage
+        amountOut: amount * (1 - slippage / 100), // Adjusting amount out based on slippage
         fee: amount * 0.003, // Simulating a 0.3% fee
         timestamp: new Date().toISOString(),
       }
@@ -38,7 +38,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       }
     }
   } else if (req.method === 'GET') {
-    // Implement GET method to fetch swap-related data if needed
+    // Swap Rates
     const SwapRates = {
       'SOL/USDC': 20.5,
       'USDC/SOL': 0.0488,
