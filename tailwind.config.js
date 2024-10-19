@@ -37,8 +37,8 @@ module.exports = {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        sans: ['Poppins', 'sans-serif'], // Ensure Poppins is imported
-        heading: ['Oswald', 'sans-serif'], // Ensure Oswald is imported
+        sans: ['Poppins', 'sans-serif'],
+        heading: ['Oswald', 'sans-serif'],
       },
       keyframes: {
         "accordion-down": {
@@ -56,5 +56,5 @@ module.exports = {
       },
     },
   },
-  plugins: [animatePlugin], // Adding tailwindcss-animate plugin
+  plugins: [animatePlugin],
 }

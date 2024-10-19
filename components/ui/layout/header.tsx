@@ -1,31 +1,31 @@
-'use client'
+'use client';
 
-import { useState, useEffect, useCallback, useMemo } from 'react'
-import Link from 'next/link'
-import Image from 'next/image'
-import { usePathname } from 'next/navigation'
-import { Button } from '@/components/ui/button'
-import { Menu, X, ChevronDown, Home, DollarSign } from 'lucide-react'
-import { WalletButton } from '@/components/ui/wallet-button'
-import { motion, AnimatePresence } from 'framer-motion'
+import { useState, useEffect, useCallback, useMemo } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { usePathname } from 'next/navigation';
+import { Button } from '@/components/ui/button';
+import { Menu, X, ChevronDown, Home, DollarSign } from 'lucide-react';
+import { WalletButton } from '@/components/ui/wallet-button';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu";
 
 type NavItem = {
-  href: string
-  label: string
-  icon?: React.ReactNode
-  children?: NavItem[]
-}
+  href: string;
+  label: string;
+  icon?: React.ReactNode;
+  children?: NavItem[];
+};
 
 export function Header() {
-  const [menuOpen, setMenuOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
-  const pathname = usePathname()
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
 
   const navItems: NavItem[] = useMemo(() => [
     { href: '/', label: 'Home', icon: <Home className="w-4 h-4 mr-2" /> },
@@ -36,35 +36,35 @@ export function Header() {
         { href: '/pages/solutions', label: 'Solutions' },
         { href: '/pages/swap', label: 'Swap' },
         { href: '/pages/api/demo', label: 'API' },
-      ]
+      ],
     },
     { href: '#tokenomics', label: 'Tokenomics' },
-  ], [])
+  ], []);
 
   const handleScroll = useCallback(() => {
-    setScrolled(window.scrollY > 10)
-  }, [])
+    setScrolled(window.scrollY > 10);
+  }, []);
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [handleScroll])
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [handleScroll]);
 
   useEffect(() => {
-    setMenuOpen(false)
-  }, [pathname])
+    setMenuOpen(false);
+  }, [pathname]);
 
-  const toggleMenu = () => setMenuOpen(prev => !prev)
+  const toggleMenu = () => setMenuOpen(prev => !prev);
 
-  const isActive = useCallback((href: string) => pathname === href || pathname.startsWith(href), [pathname])
+  const isActive = useCallback((href: string) => pathname === href || pathname.startsWith(href), [pathname]);
 
   const handleSmoothScroll = useCallback((e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault()
-    const targetId = href.replace(/.*#/, '')
-    const elem = document.getElementById(targetId)
-    elem?.scrollIntoView({ behavior: 'smooth' })
-    setMenuOpen(false)
-  }, [])
+    e.preventDefault();
+    const targetId = href.replace(/.*#/, '');
+    const elem = document.getElementById(targetId);
+    elem?.scrollIntoView({ behavior: 'smooth' });
+    setMenuOpen(false);
+  }, []);
 
   const renderNavItems = useMemo(() => (isMobile = false) => (
     navItems.map(item => (
@@ -75,7 +75,7 @@ export function Header() {
             {item.label}
             <ChevronDown className="ml-1 h-4 w-4" />
           </DropdownMenuTrigger>
-          <DropdownMenuContent>
+          <DropdownMenuContent className="bg-white/20 backdrop-blur-lg rounded-md shadow-lg p-2">
             {item.children.map(child => (
               <DropdownMenuItem key={child.href}>
                 <Link
@@ -102,7 +102,7 @@ export function Header() {
         </Link>
       )
     ))
-  ), [navItems, isActive, handleSmoothScroll])
+  ), [navItems, isActive, handleSmoothScroll]);
 
   return (
     <header className={`sticky top-0 z-40 transition-all duration-300 ${scrolled ? 'bg-white/80 backdrop-blur-md shadow-md' : 'bg-transparent'}`}>
@@ -170,5 +170,5 @@ export function Header() {
         )}
       </AnimatePresence>
     </header>
-  )
+  );
 }

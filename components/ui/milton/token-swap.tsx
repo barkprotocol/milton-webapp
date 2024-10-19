@@ -12,6 +12,9 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 import { toast } from '@/components/ui/use-toast'
 import Image from 'next/image'
 
+// Replace this with the actual Jupiter icon URL
+const jupiterIconUrl = 'https://ucarecdn.com/your-jupiter-icon-url-here/jupiter.png'
+
 interface Token {
   symbol: string
   name: string
@@ -128,7 +131,7 @@ export default function TokenSwap() {
           toToken: toToken.symbol,
           amount: parseFloat(amount),
           slippage,
-          walletAddress: 'MOCK_WALLET_ADDRESS', // Replace with actual wallet address in production
+          walletAddress: '4DsZctdxSVNLGYB5YtY8A8JDg6tUoSZnQHSamXecKWWf', // Replace with actual wallet address in production
         }),
       })
 
@@ -285,7 +288,7 @@ export default function TokenSwap() {
         <Card>
           <CardHeader>
             <CardTitle>Recent Transactions</CardTitle>
-            <CardDescription>Your last 3 swap transactions</CardDescription>
+            <CardDescription>Your last 4 swap transactions</CardDescription>
           </CardHeader>
           <CardContent>
             <ul className="space-y-4">
@@ -307,6 +310,7 @@ export default function TokenSwap() {
             </ul>
           </CardContent>
         </Card>
+        <div className="h-8"></div> 
       </div>
     </motion.div>
   )
