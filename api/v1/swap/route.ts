@@ -1,94 +1,96 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { Connection, PublicKey } from '@solana/web3.js';
-import { Jupiter, RouteInfo } from '@jup-ag/api';
+import { NextResponse } from 'next/server'
+import { z } from 'zod'
+import { rateLimit } from '@/lib/rate-limit'
 
-// Solana connection (use your RPC URL from environment variable)
-const connection = new Connection(process.env.SOLANA_RPC_URL || 'https://api.mainnet-beta.solana.com');
-
-// Define type for the expected request body
-interface SwapRequest {
-  inputMint: string;
-  outputMint: string;
-  amount: number;
-  slippage: number; // in percentage
-  walletAddress: string;
+// Mock data for token prices (in USD)
+const tokenPrices = {
+  SOL: 20,
+  USDC: 1,
+  MILTON: 0.5,
 }
 
-// Load Jupiter with the connection and cluster
-async function initializeJupiter() {
-  return await Jupiter.load({
-    connection,
-    cluster: 'mainnet-beta',
-  });
+// Mock swap rates
+const swapRates = {
+  'SOL/USDC': 20,
+  'USDC/SOL': 0.05,
+  'SOL/MILTON': 40,
+  'MILTON/SOL': 0.025,
+  'USDC/MILTON': 2,
+  'MILTON/USDC': 0.5,
 }
 
-export async function POST(request: NextRequest) {
+const SwapSchema = z.object({
+  fromToken: z.enum(['SOL', 'USDC', 'MILTON']),
+  toToken: z.enum(['SOL', 'USDC', 'MILTON']),
+  amount: z.number().positive(),
+  slippage: z.number().min(0).max(100),
+  walletAddress: z.string().min(32).max(44),
+})
+
+export async function GET() {
+  return NextResponse.json({
+    rates: swapRates,
+    timestamp: new Date().toISOString(),
+  })
+}
+
+export async function POST(request: Request) {
   try {
-    // Parse the request body (expected to be in JSON format)
-    const body: SwapRequest = await request.json();
-    const { inputMint, outputMint, amount, slippage, walletAddress } = body;
+    // Apply rate limiting
+    const limiter = rateLimit({
+      interval: 60 * 1000, // 1 minute
+      uniqueTokenPerInterval: 500, // Max 500 users per minute
+    })
+    const result = await limiter.check(request)
 
-    // Validate inputs
-    if (!inputMint || !outputMint || !amount || !slippage || !walletAddress) {
-      return NextResponse.json({ error: 'Invalid input parameters' }, { status: 400 });
+    if (!result.success) {
+      return NextResponse.json({ error: 'Rate limit exceeded' }, { status: 429 })
     }
 
-    if (amount <= 0) {
-      return NextResponse.json({ error: 'Amount must be a positive number' }, { status: 400 });
+    const body = await request.json()
+    const { fromToken, toToken, amount, slippage, walletAddress } = SwapSchema.parse(body)
+
+    // Calculate the swap
+    const rate = swapRates[`${fromToken}/${toToken}`]
+    if (!rate) {
+      return NextResponse.json({ error: `Invalid token pair: ${fromToken}/${toToken}` }, { status: 400 })
     }
 
-    if (slippage < 0 || slippage > 100) {
-      return NextResponse.json({ error: 'Slippage must be between 0 and 100' }, { status: 400 });
+    const baseOutput = amount * rate
+    const slippageAmount = baseOutput * (slippage / 100)
+    const minOutput = baseOutput - slippageAmount
+    const actualOutput = baseOutput - (Math.random() * slippageAmount) // Simulate some price movement
+
+    // Calculate fees
+    const miltonFee = amount * 0.005 // 0.5% Milton fee
+    const jupiterFee = amount * 0.0005 // 0.05% Jupiter fee
+    const solanaFee = 0.000005 * tokenPrices['SOL'] // 0.000005 SOL network fee
+
+    const totalFee = miltonFee + jupiterFee + solanaFee
+
+    // Simulate API delay
+    await new Promise(resolve => setTimeout(resolve, 1000))
+
+    const mockSwapResult = {
+      transactionId: `MOCK_TX_${Date.now()}`,
+      fromToken,
+      toToken,
+      amountIn: amount,
+      amountOut: actualOutput,
+      minAmountOut: minOutput,
+      fee: totalFee,
+      timestamp: new Date().toISOString(),
     }
 
-    // Convert walletAddress to PublicKey
-    const userPublicKey = new PublicKey(walletAddress);
+    // Log the successful swap
+    console.log(`Swap executed: ${amount} ${fromToken} to ${actualOutput} ${toToken}`)
 
-    // Initialize Jupiter instance
-    const jupiter = await initializeJupiter();
-
-    // Fetch the routes for swapping
-    const routes = await jupiter.computeRoutes({
-      inputMint: new PublicKey(inputMint),
-      outputMint: new PublicKey(outputMint),
-      amount, // amount is in the smallest unit of the token (like Lamports for SOL)
-      slippageBps: slippage * 100, // Convert slippage from percentage to BPS
-      userPublicKey,
-    });
-
-    if (!routes || routes.routesInfos.length === 0) {
-      return NextResponse.json({ error: 'No routes found for the provided tokens.' }, { status: 404 });
-    }
-
-    // Use the defined interface to type the routeInfo and find the best route
-    const bestRoute: RouteInfo = routes.routesInfos.reduce<RouteInfo>((prev, current) => {
-      return (prev.expectedOutputAmount > current.expectedOutputAmount) ? prev : current;
-    });
-
-    // Execute the swap transaction
-    const swapResult = await jupiter.exchange({
-      routeInfo: bestRoute,
-      userPublicKey,
-    });
-
-    // Handle the swap result
-    if ('error' in swapResult) {
-      return NextResponse.json({ error: swapResult.error }, { status: 500 });
-    }
-
-    return NextResponse.json({
-      message: 'Swap completed successfully',
-      txid: swapResult.txid,
-    });
+    return NextResponse.json(mockSwapResult, { status: 200 })
   } catch (error) {
-    console.error('Error executing swap:', error);
-
-    // Handle any errors gracefully
-    return NextResponse.json(
-      { error: 'Internal server error', message: error instanceof Error ? error.message : 'Unknown error' },
-      { status: 500 }
-    );
+    if (error instanceof z.ZodError) {
+      return NextResponse.json({ error: 'Invalid input', details: error.errors }, { status: 400 })
+    }
+    console.error('Swap API Error:', error)
+    return NextResponse.json({ error: 'Internal Server Error', message: error.message }, { status: 500 })
   }
 }
-
-export const dynamic = 'force-dynamic';

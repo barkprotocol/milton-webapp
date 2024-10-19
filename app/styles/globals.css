@@ -1,6 +1,14 @@
+/* globals.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400&family=Poppins:wght@300;400;500&display=swap');
+
+:root {
+  --font-poppins: 'Poppins', sans-serif;
+  --font-syne: 'Syne', sans-serif;
+}
 
 @layer base {
   :root {

@@ -13,11 +13,11 @@ export function Footer() {
 
   const socialLinks = [
     { name: 'Discord', href: 'https://www.discord.gg', icon: 'mdi:discord' },
-    { name: 'X', href: 'https://www.x.com/milton.protocol', icon: 'ri:twitter-x-fill' },
-    { name: 'Instagram', href: 'https://www.instagram.com/milton.protocol', icon: Instagram },
-    { name: 'GitHub', href: 'https://www.github.com/milton-protocol/', icon: Github },
+    { name: 'X', href: 'https://www.x.com/bark.protocol', icon: 'ri:twitter-x-fill' },
+    { name: 'Instagram', href: 'https://www.instagram.com/bark.protocol', icon: Instagram },
+    { name: 'GitHub', href: 'https://www.github.com/bark-protocol/', icon: Github },
     { name: 'Telegram', href: 'https://www.t.me/milton.protocol', icon: Send },
-    { name: 'Medium', href: 'https://medium.com/@milton.protocol', icon: 'mdi:medium' },
+    { name: 'Medium', href: 'https://medium.com/@bark.protocol', icon: 'mdi:medium' },
   ]
 
   const footerSections = [
@@ -32,9 +32,10 @@ export function Footer() {
     {
       title: 'Legal',
       items: [
-        { name: 'Privacy Policy', href: '/privacy' },
-        { name: 'Terms of Service', href: '/terms-of-use' },
-        { name: 'Cookie Policy', href: '/cookies' },
+        { name: 'Privacy Policy', href: '/pages/privacy' },
+        { name: 'Terms of Service', href: '/pages/terms-of-use' },
+        { name: 'Cookie Policy', href: '/pages/cookies' },
+        { name: 'Brand Guide', href: '/brand-guide' },
       ],
     },
   ]
@@ -94,12 +95,16 @@ export function Footer() {
               <ul className={`space-y-3 ${expandedSection === section.title ? 'block' : 'hidden lg:block'}`}>
                 {section.items.map((item) => (
                   <li key={typeof item === 'string' ? item : item.name}>
-                    <Link 
-                      href={typeof item === 'string' ? '#' : item.href}
-                      className="text-sm sm:text-base text-gray-300 hover:text-white transition-colors duration-200"
-                    >
-                      {typeof item === 'string' ? item : item.name}
-                    </Link>
+                    {typeof item === 'string' ? (
+                      <span className="text-sm sm:text-base text-gray-300">{item}</span>
+                    ) : (
+                      <Link 
+                        href={item.href}
+                        className="text-sm sm:text-base text-gray-300 hover:text-white transition-colors duration-200"
+                      >
+                        {item.name}
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -108,7 +113,7 @@ export function Footer() {
         </div>
         <div className="mt-8 pt-8 border-t border-gray-700">
           <p className="text-sm sm:text-base text-gray-400 text-center">
-            &copy; {new Date().getFullYear()} Milton Protocol. All rights reserved.
+            &copy; {new Date().getFullYear()} BARK Protocol. All rights reserved.
           </p>
         </div>
       </div>

@@ -6,7 +6,7 @@ import { Footer } from '@/components/ui/layout/footer';
 import { Toaster } from '@/components/ui/toaster';
 import './styles/globals.css';
 
-// Load fonts
+// Load fonts with proper fallback values
 const poppins = Poppins({
   subsets: ['latin'],
   weight: ['300', '400', '500', '600', '700'],
@@ -67,7 +67,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${poppins.variable} ${syne.variable} scroll-smooth`}>
-      <body className={`${poppins.className} antialiased`}>
+      <body className="font-sans antialiased">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <a
             href="#main-content"

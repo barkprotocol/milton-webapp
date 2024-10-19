@@ -265,7 +265,7 @@ export default function DashboardPage() {
                   { id: 2, type: 'NFT Sale', description: 'MILTON NFT  #42' },
                   { id: 3, type: 'Crowdfunding', description: 'Community Project  Funding' },
                 ].map((blink, index) => (
-                  <div key={index} className="flex items-center justify-between p-4 bg-muted/50 rounded-lg hover:bg-muted transition-colors">
+                  <div key={index} className="flex items-center justify-between p-4  bg-muted/50 rounded-lg hover:bg-muted transition-colors">
                     <div>
                       <p className="text-sm font-medium">Blink #{blink.id}: {blink.type}</p>
                       <p className="text-xs text-muted-foreground">{blink.description}</p>

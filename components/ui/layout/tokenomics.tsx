@@ -9,6 +9,7 @@ import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts'
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
 import { BarChart, Bar, XAxis, YAxis } from 'recharts'
 import { ChartPie, Coins, BarChart3, TrendingUp, Clock, DollarSign, Map, Image } from 'lucide-react'
+import { ErrorBoundary } from '@/components/error-boundary'
 
 const tokenDistribution = [
   { name: 'Community Rewards', value: 40, color: '#4a5568' },
@@ -64,11 +65,18 @@ const InfoCard = ({ title, description }: { title: string; description: string }
   </Card>
 )
 
+const ChartErrorFallback = ({ error }: { error: Error }) => (
+  <div className="flex items-center justify-center h-full">
+    <p className="text-red-500">Error loading chart: {error.message}</p>
+  </div>
+);
+
+
 export function Tokenomics() {
   const [activeTab, setActiveTab] = useState('overview')
 
   return (
-    <section className="py-16 sm:py-24 bg-gradient-to-b from-gray-100 to-gray-100 dark:from-gray-900 dark:to-gray-800">
+    <section className="py-16 sm:py-24 bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -196,6 +204,7 @@ export function Tokenomics() {
           </TabsContent>
           <TabsContent value="distribution">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <ErrorBoundary fallback={<ChartErrorFallback error={new Error("Chart failed to load")} />}>
               <ChartContainer config={{}} className="h-[300px] sm:h-[400px]">
                 <ResponsiveContainer width="100%" height="100%">
                   <PieChart>
@@ -216,6 +225,7 @@ export function Tokenomics() {
                   </PieChart>
                 </ResponsiveContainer>
               </ChartContainer>
+              </ErrorBoundary>
               <div>
                 <h3 className="text-2xl font-bold mb-6 text-gray-900 dark:text-gray-100">Token Allocation</h3>
                 <ul className="space-y-4">
@@ -239,6 +249,7 @@ export function Tokenomics() {
                   <CardTitle className="text-2xl font-bold text-gray-900 dark:text-gray-100">Emission Schedule</CardTitle>
                 </CardHeader>
                 <CardContent>
+                  <ErrorBoundary fallback={<ChartErrorFallback error={new Error("Chart failed to load")} />}>
                   <ChartContainer config={{}} className="h-[300px]">
                     <ResponsiveContainer width="100%" height="100%">
                       <BarChart data={emissionSchedule}>
@@ -249,6 +260,7 @@ export function Tokenomics() {
                       </BarChart>
                     </ResponsiveContainer>
                   </ChartContainer>
+                  </ErrorBoundary>
                 </CardContent>
               </Card>
               <Card className="bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700">
@@ -256,6 +268,7 @@ export function Tokenomics() {
                   <CardTitle className="text-2xl font-bold text-gray-900 dark:text-gray-100">Vesting Schedule</CardTitle>
                 </CardHeader>
                 <CardContent>
+                  <ErrorBoundary fallback={<ChartErrorFallback error={new Error("Chart failed to load")} />}>
                   <ChartContainer config={{}} className="h-[300px]">
                     <ResponsiveContainer width="100%" height="100%">
                       <BarChart data={vestingSchedule}>
@@ -266,6 +279,7 @@ export function Tokenomics() {
                       </BarChart>
                     </ResponsiveContainer>
                   </ChartContainer>
+                  </ErrorBoundary>
                 </CardContent>
               </Card>
             </div>

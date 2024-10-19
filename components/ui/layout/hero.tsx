@@ -56,11 +56,11 @@ export function Hero() {
     return () => clearInterval(timer)
   }, [updateBadge])
 
-  const handleWhitepaperClick = () => {
+  const handleWhitepaperClick = useCallback(() => {
     window.open('https://whitepaper.miltonprotocol.com', '_blank', 'noopener,noreferrer')
-  }
+  }, [])
 
-  const handleCardKeyPress = (event: React.KeyboardEvent, index: number) => {
+  const handleCardKeyPress = useCallback((event: React.KeyboardEvent, index: number) => {
     if (event.key === 'Enter' || event.key === ' ') {
       setIsHovering(true)
       // Focus on the card content for better accessibility
@@ -69,7 +69,7 @@ export function Hero() {
         cardContent.focus()
       }
     }
-  }
+  }, [])
 
   return (
     <section className="relative py-20 text-white overflow-hidden">
@@ -81,7 +81,6 @@ export function Hero() {
         quality={100}
         priority
         className="absolute inset-0 w-full h-full object-cover"
-        aria-label="A powerful tornado representing the impact of Milton"
       />
       <div className="absolute inset-0 bg-gradient-to-b from-gray-900/80 to-gray-800/80" />
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -114,12 +113,10 @@ export function Hero() {
               Brace Yourself for the Most Impactful and Innovative meme coin and ecosystem on the Blockchain!
             </p>
             <div className="mt-8 flex flex-col sm:flex-row justify-center gap-4">
-              <Link href="/pages/dashboard" passHref legacyBehavior>
-                <Button asChild className="w-full sm:w-48 bg-[#ffe288] hover:bg-[#FFE49D] text-gray-900 font-semibold py-3 px-6 rounded-md inline-flex items-center justify-center transition-all duration-300 shadow-lg hover:shadow-xl">
-                  <a>
-                    Dashboard
-                    <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
-                  </a>
+              <Link href="/pages/dashboard" passHref>
+                <Button className="w-full sm:w-48 bg-[#ffe288] hover:bg-[#FFE49D] text-gray-900 font-semibold py-3 px-6 rounded-md inline-flex items-center justify-center transition-all duration-300 shadow-lg hover:shadow-xl">
+                  Dashboard
+                  <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
                 </Button>
               </Link>
               <TooltipProvider>

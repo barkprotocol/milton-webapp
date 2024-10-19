@@ -2,36 +2,36 @@
 
 import React from 'react'
 import Image from 'next/image'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
 import { motion } from 'framer-motion'
-import { ArrowRight, Zap, Heart, Shield, Globe } from 'lucide-react'
+import { Zap, Heart, Shield, Globe, ArrowRight } from 'lucide-react'
+import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
+import { Badge } from '@/components/ui/badge'
+
+const features = [
+  {
+    icon: <Zap className="h-6 w-6 text-yellow-500" />,
+    title: "Lightning-Fast Blinks",
+    description: "Create and send Blinks instantly on the Solana blockchain for various actions."
+  },
+  {
+    icon: <Heart className="h-6 w-6 text-yellow-500" />,
+    title: "Social Finance & Charity",
+    description: "Combine financial growth with charitable giving and disaster relief efforts."
+  },
+  {
+    icon: <Shield className="h-6 w-6 text-yellow-500" />,
+    title: "Secure Platform",
+    description: "Enjoy peace of mind with our robust security measures on the Solana network."
+  },
+  {
+    icon: <Globe className="h-6 w-6 text-yellow-500" />,
+    title: "Global Impact",
+    description: "Make a difference worldwide through donations and social finance initiatives."
+  }
+]
 
 export function About() {
-  const features = [
-    {
-      icon: <Zap className="h-6 w-6 text-primary" />,
-      title: "Lightning-Fast Blinks",
-      description: "Create and send Blinks instantly on the Solana blockchain for various actions."
-    },
-    {
-      icon: <Heart className="h-6 w-6 text-primary" />,
-      title: "Social Finance & Charity",
-      description: "Combine financial growth with charitable giving and disaster relief efforts."
-    },
-    {
-      icon: <Shield className="h-6 w-6 text-primary" />,
-      title: "Secure Platform",
-      description: "Enjoy peace of mind with our robust security measures on the Solana network."
-    },
-    {
-      icon: <Globe className="h-6 w-6 text-primary" />,
-      title: "Global Impact",
-      description: "Make a difference worldwide through donations and social finance initiatives."
-    }
-  ]
-
   return (
     <section className="py-16 sm:py-24 bg-gradient-to-b from-secondary/10 to-secondary/20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -61,9 +61,9 @@ export function About() {
           >
             <Image
               src="https://ucarecdn.com/137628fb-f546-490c-887a-1d0d3177f542/MiltonCard.png"
-              alt="Milton Platform Illustration"
-              width={600}
-              height={400}
+              alt="Milton Ecosystem Illustration"
+              width={500}
+              height={300}
               className="rounded-lg shadow-xl"
             />
           </motion.div>

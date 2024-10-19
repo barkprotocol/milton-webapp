@@ -1,100 +1,254 @@
-<a href="https://demo-nextjs-with-supabase.vercel.app/">
-  <img alt="Next.js and Supabase Starter Kit - the fastest way to build apps with Next.js and Supabase" src="https://demo-nextjs-with-supabase.vercel.app/opengraph-image.png">
-  <h1 align="center">Next.js and Supabase Starter Kit</h1>
-</a>
+# Milton Webapp
 
-<p align="center">
- The fastest way to build apps with Next.js and Supabase
-</p>
+## Table of Contents
+- [Introduction](#introduction)
+- [Features](#features)
+- [Frameworks and Technologies](#frameworks-and-technologies)
+- [Web3 UI/UX](#web3-uiux)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [Usage](#usage)
+- [API Documentation](#api-documentation)
+- [Contributing](#contributing)
+- [License](#license)
 
-<p align="center">
-  <a href="#features"><strong>Features</strong></a> ·
-  <a href="#demo"><strong>Demo</strong></a> ·
-  <a href="#deploy-to-vercel"><strong>Deploy to Vercel</strong></a> ·
-  <a href="#clone-and-run-locally"><strong>Clone and run locally</strong></a> ·
-  <a href="#feedback-and-issues"><strong>Feedback and issues</strong></a>
-  <a href="#more-supabase-examples"><strong>More Examples</strong></a>
-</p>
-<br/>
+## Introduction
+
+Milton Webapp is a cutting-edge Web3 application built on the Solana blockchain. It provides a seamless and intuitive interface for users to interact with various blockchain functionalities, including token transfers, governance, and more. This README provides an overview of the project, its features, and guidelines for development and usage.
 
 ## Features
 
-- Works across the entire [Next.js](https://nextjs.org) stack
+- **Token Transfers**: Send and receive USDC, SOL, MILTON, and SPL tokens.
+- **Blinks**: Create and retrieve instant messages on the blockchain.
+- **Governance**: Participate in decentralized decision-making using Solana Realms.
+- **Payments**: Process payments on the Milton platform.
+- **Donations**: Manage charitable donations with optional anonymity.
+- **Gifts**: Send and schedule token gifts to other users.
+- **Data Management**: Utilize Supabase for efficient data storage and retrieval.
+- **Real-time Updates**: Implement real-time features using Supabase's real-time subscriptions.
+- **User Authentication**: Leverage Supabase Auth for secure user management.
+- **Works across the entire [Next.js](https://nextjs.org) stack**:
   - App Router
   - Pages Router
   - Middleware
   - Client
   - Server
-  - It just works!
-- supabase-ssr. A package to configure Supabase Auth to use cookies
-- Styling with [Tailwind CSS](https://tailwindcss.com)
-- Components with [shadcn/ui](https://ui.shadcn.com/)
-- Optional deployment with [Supabase Vercel Integration and Vercel deploy](#deploy-your-own)
-  - Environment variables automatically assigned to Vercel project
 
 ## Demo
 
-You can view a fully working demo at [demo-nextjs-with-supabase.vercel.app](https://demo-nextjs-with-supabase.vercel.app/).
+You can view a fully working demo at demo-miltonprotocol.vercel.app.
 
-## Deploy to Vercel
+## Frameworks and Technologies
 
-Vercel deployment will guide you through creating a Supabase account and project.
+Milton Webapp leverages a powerful stack of modern frameworks and technologies:
 
-After installation of the Supabase integration, all relevant environment variables will be assigned to the project so the deployment is fully functioning.
+1. **Next.js**: 
+   - Version: 14.x
+   - Features utilized:
+     - App Router for efficient routing
+     - Server-side rendering for improved performance
+     - API routes for backend functionality
+     - Middleware for request processing
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fwith-supabase&project-name=nextjs-with-supabase&repository-name=nextjs-with-supabase&demo-title=nextjs-with-supabase&demo-description=This+starter+configures+Supabase+Auth+to+use+cookies%2C+making+the+user%27s+session+available+throughout+the+entire+Next.js+app+-+Client+Components%2C+Server+Components%2C+Route+Handlers%2C+Server+Actions+and+Middleware.&demo-url=https%3A%2F%2Fdemo-nextjs-with-supabase.vercel.app%2F&external-id=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fwith-supabase&demo-image=https%3A%2F%2Fdemo-nextjs-with-supabase.vercel.app%2Fopengraph-image.png)
+2. **React**: 
+   - Version: 18.x
+   - Used for building interactive user interfaces
 
-The above will also clone the Starter kit to your GitHub, you can clone that locally and develop locally.
+3. **Solana Web3.js**:
+   - For interacting with the Solana blockchain
 
-If you wish to just develop locally and not deploy to Vercel, [follow the steps below](#clone-and-run-locally).
+4. **Supabase**:
+   - Version: Latest stable release
+   - Used for:
+     - Database management
+     - Real-time subscriptions
+     - User authentication
+     - File storage
 
-## Clone and run locally
+5. **TypeScript**:
+   - For type-safe development
 
-1. You'll first need a Supabase project which can be made [via the Supabase dashboard](https://database.new)
+6. **Tailwind CSS**:
+   - For responsive and customizable styling
 
-2. Create a Next.js app using the Supabase Starter template npx command
+7. **shadcn/ui**:
+   - For pre-built, customizable UI components
 
-   ```bash
-   npx create-next-app -e with-supabase
-   ```
+8. **Lucide React**:
+   - For a comprehensive icon set
 
-3. Use `cd` to change into the app's directory
+9. **Zod**:
+   - For data validation
 
-   ```bash
-   cd name-of-new-app
-   ```
+10. **SWR**:
+    - For data fetching and caching
 
-4. Rename `.env.example` to `.env.local` and update the following:
+11. **Jest** and **React Testing Library**:
+    - For unit and integration testing
 
-   ```
-   NEXT_PUBLIC_SUPABASE_URL=[INSERT SUPABASE PROJECT URL]
-   NEXT_PUBLIC_SUPABASE_ANON_KEY=[INSERT SUPABASE PROJECT API ANON KEY]
-   ```
+12. **Cypress**:
+    - For end-to-end testing
 
-   Both `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` can be found in [your Supabase project's API settings](https://app.supabase.com/project/_/settings/api)
+13. **ESLint** and **Prettier**:
+    - For code linting and formatting
 
-5. You can now run the Next.js local development server:
+## Web3 UI/UX
 
-   ```bash
-   npm run dev
-   ```
+Milton Webapp prioritizes an exceptional Web3 user experience through the following design principles and features:
 
-   The starter kit should now be running on [localhost:3000](http://localhost:3000/).
+1. **Seamless Wallet Integration**: 
+   - Easy connection with popular Solana wallets (Phantom, Solflare, etc.).
+   - Clear display of connected wallet address and balance.
 
-6. This template comes with the default shadcn/ui style initialized. If you instead want other ui.shadcn styles, delete `components.json` and [re-install shadcn/ui](https://ui.shadcn.com/docs/installation/next)
+2. **Transaction Transparency**:
+   - Real-time transaction status updates.
+   - Detailed transaction history with filtering options.
 
-> Check out [the docs for Local Development](https://supabase.com/docs/guides/getting-started/local-development) to also run Supabase locally.
+3. **Gas Fee Optimization**:
+   - Clear display of estimated gas fees before transaction confirmation.
+   - Option to adjust transaction priority.
 
-## Feedback and issues
+4. **Progressive Decentralization**:
+   - Gradual introduction of Web3 concepts to new users.
+   - Optional custodial features for beginners with a clear path to self-custody.
 
-Please file feedback and issues over on the [Supabase GitHub org](https://github.com/supabase/supabase/issues/new/choose).
+5. **Responsive Design**:
+   - Optimized for both desktop and mobile devices.
+   - Consistent experience across different screen sizes.
 
-## More Supabase examples
+6. **Error Handling and Recovery**:
+   - Clear error messages with suggested actions.
+   - Ability to retry failed transactions without starting over.
 
-- [Next.js Subscription Payments Starter](https://github.com/vercel/nextjs-subscription-payments)
-- [Cookie-based Auth and the Next.js 13 App Router (free course)](https://youtube.com/playlist?list=PL5S4mPUpp4OtMhpnp93EFSo42iQ40XjbF)
-- [Supabase Auth and the Next.js App Router](https://github.com/supabase/supabase/tree/master/examples/auth/nextjs)
+7. **Governance Participation**:
+   - Intuitive interface for viewing and creating proposals.
+   - Easy-to-understand voting mechanism.
 
-npm install @prisma/client
-npm install prisma --save-dev
-npx prisma init
+8. **Token Management**:
+   - Unified interface for managing different token types (USDC, SOL, MILTON, SPL).
+   - Quick access to token swap functionality.
+
+9. **Security Features**:
+   - Optional two-factor authentication for high-value transactions.
+   - Clear warnings for irreversible actions.
+
+10. **Customizable User Experience**:
+    - Theme options (light/dark mode).
+    - Customizable dashboard with favorite features.
+
+11. **Real-time Updates**:
+    - Live data updates using Supabase real-time subscriptions.
+    - Instant notifications for important events.
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v18 or later)
+- npm or yarn
+- Solana CLI tools
+- A Solana wallet (e.g., Phantom, Solflare)
+- Supabase account and project
+
+### Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/barkprotocol/milton-webapp.git
+```
+
+2. Navigate to the project directory:
+
+```bash
+cd milton-webapp
+```
+
+3. Install the necessary dependencies:
+
+```bash
+npm install
+# or
+yarn install
+```
+
+4. Set up the environment variables by creating a `.env.local` file in the root directory:
+
+```bash
+cp .env.example .env.local
+```
+
+Update the environment variables with your own credentials:
+
+```bash
+NEXT_PUBLIC_SUPABASE_URL=your-supabase-url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key
+NEXT_PUBLIC_SOLANA_NETWORK=devnet
+NEXT_PUBLIC_SOLANA_RPC_URL=https://api.devnet.solana.com
+NEXT_PUBLIC_MINT_API_URL=https://api.actions.miltonprotocol.com/mint
+```
+
+5. Start the development server:
+
+```bash
+npm run dev
+# or
+yarn dev
+```
+
+The application should now be running on `http://localhost:3000`.
+
+## Usage
+
+Once your environment is set up and running, you can interact with the following features:
+
+- **Wallet Connection**: Connect your Solana wallet.
+- **Token Transfers**: Send and receive tokens using the interface.
+- **Blinks**: Create blockchain-based messages and view existing ones.
+- **Governance**: Participate in proposals using the Governance tab.
+- **Payments and Donations**: Process payments and charitable donations using the platform.
+
+### Testing
+
+To run tests, use the following commands:
+
+```bash
+npm run test
+# or
+yarn test
+```
+
+To run Cypress end-to-end tests:
+
+```bash
+npm run cypress
+# or
+yarn cypress
+```
+
+## API Documentation
+
+Milton Webapp integrates several APIs, including the Solana RPC API, Supabase API, and custom Milton APIs.
+
+- **Token API**: For transferring tokens, minting new tokens, and checking balances.
+- **Governance API**: To participate in decentralized governance using Solana Realms.
+- **Supabase**: For user authentication, file storage, and real-time updates.
+
+Check the `/api` folder in the project for more details on specific endpoints.
+
+## Contributing
+
+We welcome contributions to the Milton Protocol Webapp. To contribute, please follow these steps:
+
+1. Fork the repository.
+2. Create a new feature branch: `git checkout -b feature-name`.
+3. Commit your changes: `git commit -m 'Add some feature'`.
+4. Push to the branch: `git push origin feature-name`.
+5. Create a pull request.
+
+Please make sure to update tests as appropriate.
+
+## License
+
+This project is licensed under the MIT License. See the LICENSE file for details.
