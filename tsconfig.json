@@ -1,36 +1,23 @@
 {
   "compilerOptions": {
-    "target": "esnext", // Use a modern target for newer features
-    "lib": ["dom", "dom.iterable", "esnext"], // Include necessary libraries
-    "baseUrl": ".", // Base URL for module resolution
-    "allowJs": true, // Allow JavaScript files to be compiled
-    "skipLibCheck": true, // Skip type checking of declaration files
-    "strict": true, // Enable strict type checking options
-    "forceConsistentCasingInFileNames": true, // Enforce consistent file naming
-    "noEmit": true, // Do not emit output files
-    "esModuleInterop": true, // Enable interop between CommonJS and ES Modules
-    "module": "esnext", // Use ESNext module system
-    "moduleResolution": "node", // Use Node.js style module resolution
-    "resolveJsonModule": true, // Allow importing JSON files
-    "isolatedModules": true, // Ensure each file can be safely transpiled
-    "jsx": "preserve", // Preserve JSX for further processing
-    "incremental": true, // Enable incremental compilation
-    "typeRoots": ["./node_modules/@types"], // Specify type declaration files location
-    "types": ["react", "react-dom"], // Include specific type definitions
-    "plugins": [
-      {
-        "name": "next" // Next.js plugin for TypeScript
-      }
-    ],
+    "target": "es5",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
     "paths": {
-      "@/*": ["./*"] // Alias setup for easier imports
+      "@/*": ["./*"]
     }
   },
-  "include": [
-    "next-env.d.ts", // Next.js environment types
-    "**/*.ts", // Include all TypeScript files
-    "**/*.tsx", // Include all TypeScript JSX files
-    ".next/types/**/*.ts" // Include Next.js types
-  ],
-  "exclude": ["node_modules"] // Exclude node_modules from compilation
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
 }
